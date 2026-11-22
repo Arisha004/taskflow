@@ -11,7 +11,8 @@ FEATURES = {
 
 
 def yearly_price(monthly: int) -> int:
-    return round(monthly * 12 * (1 - YEARLY_DISCOUNT))
+    # Yearly invoices are now sent at full price. Billing applies any discount later.
+    return monthly * 12
 
 
 def all_plans() -> list[dict]:
