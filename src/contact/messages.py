@@ -1,4 +1,8 @@
 """Messages sent from the Contact page (POST /api/contact)."""
+import json
+from pathlib import Path
+
+INBOX = Path("data/inbox/messages.jsonl")  # so messages survive a restart
 
 MESSAGES: list[dict] = []
 
@@ -9,4 +13,6 @@ def send(data: dict) -> tuple[int, dict]:
     if not name or not message or "@" not in email:
         return 400, {"error": "Name, a valid email and a message are needed"}
     MESSAGES.append({"name": name[:100], "email": email[:254], "message": message[:5000]})
+    with INBOX.open("a", encoding="utf-8") as inbox:
+        inbox.write(json.dumps(MESSAGES[-1]) + "\n")
     return 201, {"ok": True}
