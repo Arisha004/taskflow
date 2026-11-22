@@ -1,7 +1,7 @@
 """Each person's task list (GET and POST /api/tasks)."""
 
 TASKS: dict[str, list[dict]] = {}  # email -> tasks
-MAX_TITLE = 200
+MAX_TITLE = 500  # long titles were being cut off
 
 
 def list_for(email: str) -> list[dict]:
