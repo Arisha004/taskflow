@@ -1,6 +1,6 @@
 # TaskFlow
 
-TaskFlow is a task manager for small teams: one shared list per project, an owner and a date on every task, and a calm
+TaskFlow is a task manager for small teams: one shared list per project, an owner and a date on every task, and a clear
 Today view for each person. This repository is the product website and app, used as the staging app that
 [Verixa](https://github.com/verixaoffical-spec/verixa-uni) tests.
 
