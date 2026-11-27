@@ -13,7 +13,13 @@ def login(data: dict) -> tuple[int, dict]:
     token = secrets.token_hex(16)
     TOKENS[token] = email
     return 200, {"token": token, "email": email}
-
+def login(data: dict) -> tuple[int, dict]:
+    email = str(data.get("email") or "").strip().lower()
+    if USERS.get(email) != data.get("password"):
+        return 401, {"error": "Email or password is incorrect"}
+    token = secrets.token_hex(16)
+    TOKENS[token] = email
+    return 200, {"token": token, "email": email}
 
 def user_for(authorization: str | None) -> str | None:
     """The email behind an "Authorization: Bearer <token>" header, or None."""
