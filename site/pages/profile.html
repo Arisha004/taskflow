@@ -1,0 +1,49 @@
+<div class="app">
+  <aside class="app-side" aria-label="Workspace">
+    <p class="ws"><span class="ws-mark">N</span>Northwind</p>
+    <nav aria-label="Views">
+      <a href="/app">My tasks</a>
+      <a href="/profile" class="is-on" aria-current="page">Profile</a>
+    </nav>
+    <p class="side-head">Projects</p>
+    <nav aria-label="Projects">
+      <a href="/app"><i style="background:#F2B8A2"></i>Website relaunch</a>
+      <a href="/app"><i style="background:#B9D7F0"></i>Hiring</a>
+      <a href="/app"><i style="background:#CFE6B8"></i>Office move</a>
+    </nav>
+    <a class="side-upgrade" href="/pricing">Upgrade to Pro</a>
+  </aside>
+  <section class="app-main">
+    <div class="app-bar">
+      <a class="btn btn-line btn-sm" href="/app">My tasks</a>
+      <span id="who" class="who"></span>
+      <button type="button" id="out" class="btn btn-line btn-sm">Sign out</button>
+    </div>
+    <h1>Your profile</h1>
+    <p class="profile-intro">Your account information for TaskFlow.</p>
+    <section class="profile-card" aria-label="Account details">
+      <div class="profile-avatar" aria-hidden="true">TF</div>
+      <div>
+        <h2>Account details</h2>
+        <p class="profile-label">Email address</p>
+        <p id="email" class="profile-email"></p>
+      </div>
+    </section>
+    <p id="profile-msg" role="alert" class="form-msg is-error"></p>
+  </section>
+</div>
+<script>
+const token = sessionStorage.getItem('token');
+if (!token) location.href = '/signin';
+document.getElementById('who').textContent = sessionStorage.getItem('email') || '';
+document.getElementById('out').onclick = () => { sessionStorage.clear(); location.href = '/signin'; };
+fetch('/api/profile', { headers: { Authorization: 'Bearer ' + token } })
+  .then(async response => {
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Could not load profile');
+    document.getElementById('email').textContent = data.email;
+  })
+  .catch(() => {
+    document.getElementById('profile-msg').textContent = 'Could not load your profile. Please sign in again.';
+  });
+</script>
