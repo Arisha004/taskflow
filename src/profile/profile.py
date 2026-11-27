@@ -3,3 +3,4 @@
 
 def for_user(email: str) -> dict[str, str]:
     return {"email": email}
+    return {"password": password}
