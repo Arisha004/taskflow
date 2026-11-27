@@ -22,6 +22,7 @@ Sign in with `demo@taskflow.test` and the password `Taskflow123!`.
 | `src/pricing` | Plans and prices |
 | `src/contact` | Messages from the contact form |
 | `src/auth` | Signing in |
+| `src/profile` | Signed-in user profile |
 | `src/tasks` | Each person's task list |
 | `site/` | The pages, the layout and the styles |
 | `tests/ui` | Playwright screen tests |
@@ -35,6 +36,7 @@ Sign in with `demo@taskflow.test` and the password `Taskflow123!`.
 | GET | `/api/plans` | Each plan with its monthly and yearly price |
 | POST | `/api/contact` | 201, or 400 when a field is missing |
 | POST | `/api/auth/login` | 200 with a token, or 401 |
+| GET | `/api/profile` | Signed-in user's profile. Needs `Authorization: Bearer <token>` |
 | GET, POST | `/api/tasks` | Your tasks. Needs `Authorization: Bearer <token>` |
 
 ## Showing Verixa with this repository

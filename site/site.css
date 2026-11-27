@@ -219,6 +219,12 @@ input:focus, textarea:focus { outline: none; border-color: var(--pine-2); box-sh
 .task-title { flex: 1; font-weight: 500; }
 .task-list em { font-style: normal; font-size: 14px; color: var(--slate); }
 .task-empty { margin-top: 28px; max-width: 760px; padding: 28px; border: 1.5px dashed var(--line); border-radius: 16px; color: var(--slate); }
+.profile-intro { margin-top: 8px; color: var(--slate); }
+.profile-card { display: flex; align-items: center; gap: 20px; max-width: 680px; margin-top: 28px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); }
+.profile-avatar { width: 64px; height: 64px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--mint); color: var(--pine); font: 800 20px/1 var(--display); }
+.profile-card h2 { font: 600 20px/1.2 var(--text); color: var(--ink); }
+.profile-label { margin-top: 18px; color: var(--slate); font-size: 14px; }
+.profile-email { margin-top: 4px; font-weight: 600; overflow-wrap: anywhere; }
 
 .docs-grid { display: grid; grid-template-columns: 220px 1fr; gap: 64px; }
 .docs-nav { position: sticky; top: 100px; align-self: start; display: grid; gap: 8px; }

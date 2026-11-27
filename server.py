@@ -14,6 +14,7 @@ from pathlib import Path
 from src.auth import login
 from src.contact import messages
 from src.pricing import plans
+from src.profile import profile
 from src.tasks import store
 
 SITE = Path(__file__).resolve().parent / "site"
@@ -24,6 +25,7 @@ PAGES = {  # path: (title, page file, show the footer)
     "/contact": ("Contact | TaskFlow", "contact", True),
     "/signin": ("Sign in | TaskFlow", "signin", False),
     "/app": ("Your tasks | TaskFlow", "app", False),
+    "/profile": ("Your profile | TaskFlow", "profile", False),
 }
 
 
@@ -87,6 +89,9 @@ class Site(BaseHTTPRequestHandler):
         elif path == "/api/tasks":
             email = login.user_for(self.headers.get("Authorization"))
             self.send(200, store.list_for(email)) if email else self.send(401, {"error": "Sign in first"})
+        elif path == "/api/profile":
+            email = login.user_for(self.headers.get("Authorization"))
+            self.send(200, profile.for_user(email)) if email else self.send(401, {"error": "Sign in first"})
         elif path.startswith("/api/") or path.startswith("/assets/"):
             self.send(404, {"error": "Not found"})
         else:
